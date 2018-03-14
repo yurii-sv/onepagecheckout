@@ -1,0 +1,7 @@
+/vendor
+/.idea
+/.git
+/.vagrant
+.htaccess
+.DS_Store
+.env

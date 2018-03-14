@@ -1,0 +1,35 @@
+<modification>
+	<name>One Page Checkout</name>
+	<version>1.0.0</version>
+	<link>#</link>
+	<author>Yurii S.</author>
+	<code>OnePageCheckout</code>
+
+	<file path="catalog/controller/common/cart.php">
+		<operation>
+			<search index="0"><![CDATA[	$data['checkout'] = $this->url->link('checkout/checkout', '', true); ]]></search>
+			<add position="replace" ><![CDATA[ $data['checkout'] = $this->url->link('checkout/onepagecheckout', '', true);	]]></add>
+		</operation>
+	</file>
+
+	<file path="catalog/controller/common/header.php">
+		<operation>
+			<search index="0"><![CDATA[	$data['checkout'] = $this->url->link('checkout/checkout', '', true); ]]></search>
+			<add position="replace" ><![CDATA[ $data['checkout'] = $this->url->link('checkout/onepagecheckout', '', true);	]]></add>
+		</operation>
+	</file>
+
+	<file path="catalog/controller/checkout/cart.php">
+		<operation>
+			<search index="0"><![CDATA[	public function index() { ]]></search>
+			<add position="after" ><![CDATA[ $this->response->redirect($this->url->link('checkout/onepagecheckout')); ]]></add>
+		</operation>
+	</file>
+
+    <file path="catalog/controller/checkout/checkout.php">
+        <operation>
+            <search index="0"><![CDATA[	public function index() { ]]></search>
+            <add position="after" ><![CDATA[ $this->response->redirect($this->url->link('checkout/onepagecheckout')); ]]></add>
+        </operation>
+    </file>
+</modification>
