@@ -137,7 +137,12 @@
 .checkout-checkout .cart-info .quantity {
     border-right: 0;
     width: 120px;
+    font-size: 0;
 }
+.checkout-checkout .cart-info .quantity .quantity-group {
+    margin: 3px 0;
+}
+
 
 .cart-info table tr td {
     text-align: center
@@ -214,7 +219,9 @@ tr.subtotal {
     width: 26px;
     background: #f1f1f1;
     border: 1px solid #c7c7c7;
+    margin: 0 2px;
     padding: 0;
+    font-size: 16px;
     color: #8a8a8a;
 }
 .quantity .cart-quantity {
@@ -223,4 +230,9 @@ tr.subtotal {
     width: 40px;
     padding: 5px;
     text-align: center;
+}
+.checkout-page .btn {
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
 }

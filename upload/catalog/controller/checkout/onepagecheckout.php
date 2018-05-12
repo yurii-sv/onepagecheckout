@@ -283,11 +283,11 @@ class ControllerCheckoutOnepagecheckout extends Controller
                 if (isset($this->request->post['email'])) {
                     $post_email = filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL);
                     $this->session->data['payment_address']['email'] = $post_email;
-                    $order_data['email'] = $post_email;
+                    $order_data['order_status_id'] = 0;
                     if($post_email) {
-                        $order_data['order_status_id'] = 0;
+                        $order_data['email'] = $post_email;
                     } else {
-                        $order_data['order_status_id'] = $this->config->get('config_order_status_id');
+                        $order_data['email'] = $this->config->get('config_email');
                     }
                 }
 
@@ -357,7 +357,11 @@ class ControllerCheckoutOnepagecheckout extends Controller
                     $order_data['accept_language'] = '';
                 }
 
-                $order_data['customer_id'] = 0;
+                if ($this->customer->isLogged()) {
+                    $order_data['customer_id'] = $this->customer->getId();
+                } else {
+                    $order_data['customer_id'] = 0;
+                }
                 if (isset($this->session->data['guest']['customer_group_id'])) {
                     $order_data['customer_group_id'] = $this->session->data['guest']['customer_group_id'];
                 } else {

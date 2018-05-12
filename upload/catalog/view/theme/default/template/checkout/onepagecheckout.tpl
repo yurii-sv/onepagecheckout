@@ -1,5 +1,5 @@
 <?= $header ?>
-<div class="container">
+<div class="container checkout-page">
     <ul class="breadcrumb">
         <?php foreach ($breadcrumbs as $breadcrumb) { ?>
             <li><a href="<?= $breadcrumb['href'] ?>"><?= $breadcrumb['text'] ?></a></li>
@@ -25,9 +25,8 @@
             }
         ?>
         <div id="content">
-            <h1 style="text-align: center"><?= $heading_title ?></h1>
-
             <div class="container">
+                <h1  class="content-title"><?= $heading_title ?></h1>
                 <div class="checkout checkout-checkout">
                     <?= $content_top ?>
 
@@ -226,7 +225,7 @@ function updateCart() {
         type: 'get',
         success: function(cart) {
             if (cart.status === false) {
-                document.location.href = document.origin
+                document.location.href = document.location.origin
             } else {
                 $('#cartInfo').html(cart);
                 updateShippingView();
@@ -234,6 +233,7 @@ function updateCart() {
                 updateErrors();
                 $('#ajax-button-confirm').css('display', 'inline-block');
                 $('#payment-info').css('display', 'none');
+                $('#cart').load('index.php?route=common/cart/info #cart>');
             }
         }
     });
